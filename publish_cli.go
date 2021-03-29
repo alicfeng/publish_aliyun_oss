@@ -17,7 +17,11 @@ func main() {
 	bucketName := os.Getenv("PLUGIN_BUCKET_NAME")
 	publishDir := os.Getenv("PLUGIN_PUBLISH_DIR")
 
-	fmt.Printf("%x\n", md5.Sum([]byte(endPoint)))
+	fmt.Printf("the end point     : %s\n", endPoint)
+	fmt.Printf("access key id     : %s\n", accessKeyId)
+	fmt.Printf("access key secret : %x\n", md5.Sum([]byte(endPoint)))
+	fmt.Printf("bucket name       : %s\n", bucketName)
+	fmt.Printf("publish dir       : %s\n", publishDir)
 
 	// 2.创建OSSClient实例
 	client, err := oss.New(endPoint, accessKeyId, accessKeySecret)

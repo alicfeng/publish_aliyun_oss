@@ -12,11 +12,7 @@
     <a href="https://travis-ci.com/github/alicfeng/publish_aliyun_oss">
         <img src="https://travis-ci.com/alicfeng/publish_aliyun_oss.svg?branch=master" alt="Build Status">
     </a>
-    <a href="https://github.com/alicfeng/publish_aliyun_oss">
-        <img src="https://poser.pugx.org/alicfeng/publish_aliyun_oss/license.svg" alt="License">
-    </a>
 </p>
-
 
 
 ## 🚀 Usage
