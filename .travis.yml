@@ -22,7 +22,7 @@ before_script:
   - go version
 
 script:
-  - go build -o publish_cli publish_aliyun_oss.go
+  - go build -o publish_cli publish_cli.go
   - chmod +x publish_cli
 
 after_script:
