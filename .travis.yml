@@ -1,0 +1,38 @@
+os:
+  - linux
+  - osx
+  - windows
+
+sudo: false
+
+language: go
+
+services:
+  - docker
+
+go:
+  - "1.13"
+
+install:
+  - go get "golang.org/x/time"
+  - go get "github.com/aliyun/aliyun-oss-go-sdk"
+  - go get "gopkg.in/check.v1"
+
+before_script:
+  - go version
+
+script:
+  - go build -o publish_cli publish_aliyun_oss.go
+  - chmod +x publish_cli
+
+after_script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t alicfeng/publish_aliyun_oss:latest -f Dockerfile .
+  - docker push alicfeng/publish_aliyun_oss:latest
+
+branches:
+  only:
+    - master
+
+notifications:
+  email: true
