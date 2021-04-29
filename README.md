@@ -29,22 +29,22 @@ steps:
     oss_bucket_name: xxxx
     cdn_object_path: xxxx
     cdn_object_type: xxxx
-    cdn_end_point: xxxx
+    cdn_region_id: xxxx
 ```
 
 
 
 ## ✨ Cfg
 
-|        字段         | 必选 |  类型  |       说明        |
-| :-----------------: | :--: | :----: | :---------------: |
-|   `access_key_id`   |  Y   | String |   access key is   |
-| `access_key_secret` |  Y   | String | access key secret |
-|    `publish_dir`    |  Y   | String |    publish dir    |
-|   `oss_end_point`   |  Y   | String |   OSS end point   |
-|  `oss_bucket_name`  |  Y   | String |  OSS bucket name  |
-|  `cdn_object_path`  |  Y   | String |  CDN object path  |
-|  `cdn_object_type`  |  Y   | String |  CDN object type  |
-|   `cdn_end_point`   |  Y   | String |  CDN end point    |
+|        字段         | 必选 |  类型  |       说明        |             示例             |
+| :-----------------: | :--: | :----: | :---------------: | :--------------------------: |
+|   `access_key_id`   |  Y   | String |   access key id   |    LTAI5tL3GojQ2138Lre...    |
+| `access_key_secret` |  Y   | String | access key secret |     ngZnZmdL59fwvNad...      |
+|    `publish_dir`    |  Y   | String |    publish dir    |            ./dist            |
+|   `oss_end_point`   |  Y   | String |   OSS end point   | oss-cn-shenzhen.aliyuncs.com |
+|  `oss_bucket_name`  |  Y   | String |  OSS bucket name  |         samego-demo          |
+|  `cdn_object_path`  |  Y   | String |  CDN object path  |       https://a.b.com/       |
+|  `cdn_object_type`  |  Y   | String |  CDN object type  |      File or Directory       |
+|   `cdn_region_id`   |  Y   | String |   CDN region id   |         cn-shenzhen          |
 
 
