@@ -17,7 +17,7 @@ func main() {
 	accessKeySecret := os.Getenv("PLUGIN_ACCESS_KEY_SECRET")
 	ossEndPoint := os.Getenv("PLUGIN_OSS_END_POINT")
 	ossBucketName := os.Getenv("PLUGIN_OSS_BUCKET_NAME")
-	publishDir := os.Getenv("PLUGIN_PUBLISH_DIR")
+	appPublishDir := os.Getenv("PLUGIN_APP_PUBLISH_DIR")
 	cdnRegionId := os.Getenv("PLUGIN_CDN_REGION_ID")
 	cdnObjectPath := os.Getenv("PLUGIN_CDN_OBJECT_PATH")
 	cdnObjectType := os.Getenv("PLUGIN_CDN_OBJECT_TYPE")
@@ -25,14 +25,15 @@ func main() {
 
 	// 2.终端打印变量配置信息
 	fmt.Println("\033[33mThe Task Configuration List \033[0m")
+
 	fmt.Printf("access key id     : %s\n", accessKeyId)
 	fmt.Printf("access key secret : %x\n", md5.Sum([]byte(accessKeySecret)))
 	fmt.Printf("oss end point     : %s\n", ossEndPoint)
-	fmt.Printf("oss bucket name   : %s\n", ossBucketName)
-	fmt.Printf("publish dir       : %s\n", publishDir)
-	fmt.Printf("cdn object path   : %s\n", cdnObjectPath)
-	fmt.Printf("cdn object type   : %s\n", cdnObjectType)
-	fmt.Printf("cdn region id     : %s\n\n", cdnRegionId)
+	fmt.Printf("oss bucket name	 : %s\n", ossBucketName)
+	fmt.Printf("app publish dir	 : %s\n", appPublishDir)
+	fmt.Printf("cdn object path	 : %s\n", cdnObjectPath)
+	fmt.Printf("cdn object type	 : %s\n", cdnObjectType)
+	fmt.Printf("cdn region id	 : %s\n\n", cdnRegionId)
 
 	// 3.创建OSSClient实例
 	client, err := oss.New(ossEndPoint, accessKeyId, accessKeySecret)
@@ -49,21 +50,21 @@ func main() {
 	}
 
 	// 5.获取发布目录下所有文件
-	files, _ := GetAllFiles(publishDir)
+	files, _ := GetAllFiles(appPublishDir)
 
 	// 6.遍历发布文件并上传
+	fmt.Println("\033[33mPublishing application files to oss cloud \033[0m")
 	for index, file := range files {
-		fmt.Printf("[%d/%d] %s uploading \n", index+1, len(files), file)
+		fmt.Printf("[%d/%d] upload %s \n", index+1, len(files), file)
 
 		// 5.1上传本地文件。
-		err = bucket.PutObjectFromFile(strings.Replace(file, publishDir+"/", "", 1), file)
+		err = bucket.PutObjectFromFile(strings.Replace(file, appPublishDir+"/", "", 1), file)
 		if err != nil {
 			fmt.Println("OssClient upload Error:", err)
 			os.Exit(-1)
 		}
-
-		fmt.Printf("[%d/%d] %s finished \n", index+1, len(files), file)
 	}
+	fmt.Println("\033[32mPublish application files finished \033[0m")
 
 	// 7.定义 openapi 配置信息
 	config := &openapi.Config{

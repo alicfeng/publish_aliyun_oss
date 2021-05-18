@@ -24,7 +24,7 @@ steps:
   settings:
     access_key_id: xxxx
     access_key_secret: xxxx
-    publish_dir: xxxx
+    app_publish_dir: xxxx
     oss_end_point: xxxxx
     oss_bucket_name: xxxx
     cdn_object_path: xxxx
@@ -40,7 +40,7 @@ steps:
 | :-----------------: | :--: | :----: | :---------------: | :--------------------------: |
 |   `access_key_id`   |  Y   | String |   access key id   |    LTAI5tL3GojQ2138Lre...    |
 | `access_key_secret` |  Y   | String | access key secret |     ngZnZmdL59fwvNad...      |
-|    `publish_dir`    |  Y   | String |    publish dir    |            ./dist            |
+|  `app_publish_dir`  |  Y   | String |    publish dir    |            ./dist            |
 |   `oss_end_point`   |  Y   | String |   OSS end point   | oss-cn-shenzhen.aliyuncs.com |
 |  `oss_bucket_name`  |  Y   | String |  OSS bucket name  |         samego-demo          |
 |  `cdn_object_path`  |  Y   | String |  CDN object path  |       https://a.b.com/       |
