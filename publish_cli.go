@@ -1,3 +1,7 @@
+/*
+What SameGo team is that is 'one thing, a team, work together'
+*/
+
 package main
 
 import (
@@ -50,7 +54,7 @@ func main() {
 	}
 
 	// 5.获取发布目录下所有文件
-	files, _ := GetAllFiles(appPublishDir)
+	files, _ := getAllFiles(appPublishDir)
 
 	// 6.遍历发布文件并上传
 	fmt.Println("\033[33mPublishing application files to oss cloud \033[0m")
@@ -99,11 +103,8 @@ func main() {
 	os.Exit(0)
 }
 
-/**
-获取发布目录下的所有文件集合
-递归算法实现
-*/
-func GetAllFiles(dirPath string) (files []string, err error) {
+// getAllFiles 获取发布目录下的所有文件集合 递归算法实现 */
+func getAllFiles(dirPath string) (files []string, err error) {
 	// 1.定义存储所有文件夹路径分片
 	var dirs []string
 
@@ -117,14 +118,14 @@ func GetAllFiles(dirPath string) (files []string, err error) {
 	dirSeparator := string(os.PathSeparator)
 
 	// 4.遍历当前文件夹下的左右文件资源
-	for _, fi := range fileInfos {
-		if fi.IsDir() {
-			dirs = append(dirs, dirPath+dirSeparator+fi.Name())
-			subFiles, _ := GetAllFiles(dirPath + dirSeparator + fi.Name())
+	for _, file := range fileInfos {
+		if file.IsDir() {
+			dirs = append(dirs, dirPath+dirSeparator+file.Name())
+			subFiles, _ := getAllFiles(dirPath + dirSeparator + file.Name())
 			files = append(files, subFiles...)
 			continue
 		}
-		files = append(files, dirPath+dirSeparator+fi.Name())
+		files = append(files, dirPath+dirSeparator+file.Name())
 	}
 
 	return files, nil
